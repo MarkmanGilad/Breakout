@@ -1,0 +1,134 @@
+import numpy as np
+import torch
+from colorsys import hsv_to_rgb
+import pygame
+from Graphics import*
+from Constants import*
+from Block import*
+from Ball import*
+from Brick import*
+from random import*
+class Environment:
+    def __init__(self) -> None:
+        self.left=False
+        self.right=False
+        self.score=0
+        self.bricks=pygame.sprite.Group()
+        self.block=Block(block_img)
+        self.ball=Ball(ball_img,0,3*1.412)
+        self.ball_group=pygame.sprite.GroupSingle()
+        self.i_reward = 0.05
+        self.hit_reward = 1
+        self.miss_reward = -1
+        self.above_reward = 0.2
+    
+    def move(self,action):
+        dx= hypot(self.ball.dx,self.ball.dy)+3
+        if action==1:
+            self.right=True
+            self.left=False
+        elif action==-1:
+            self.left=True
+            self.right=False
+        elif action==0:
+            self.left=False
+            self.right=False
+        if self.right:
+            self.block.move(dx)
+        if self.left:
+            self.block.move(dx*-1)  
+        reward = 0
+        self.collide_brick()
+        if self.ball.collide_block(self.block):
+            reward += 1
+        self.ball.move()
+        reward+=self.reward(action)
+        done=self.is_end_game()
+        return reward,done
+        
+    def getState(self):
+        l = rows*cols
+        state = np.zeros(l+8, dtype=np.float32)
+        for brick in self.bricks:
+            x, y = brick.col, brick.row
+            state[x+y*cols] = 1
+        bx,by = self.ball.rect.center
+        maxV = 6.2
+        state[l:l+2] = bx/WIDTH, by/HEIGHT
+        state[l+2:l+4] = self.ball.dx/maxV, self.ball.dy/maxV
+        x1, y1 = self.block.rect.topleft
+        x2, y2 = self.block.rect.bottomright
+        state[l+4:] = x1/WIDTH,y1/HEIGHT,x2/WIDTH,y2/HEIGHT
+        state = torch.from_numpy(state)
+        return state
+
+    def simple_state(self):
+        player_x, player_y = self.block.rect.midtop
+        ball_x, ball_y = self.ball.rect.center
+        ball_dx, ball_dy = self.ball.dx, self.ball.dy
+        state = torch.tensor([player_x, player_y, ball_x, ball_y, ball_dx, ball_dy], dtype=torch.float32)
+        return state
+
+    def immidiate_reward (self, state, next_state):
+        state_dx = (state[2] - state[0]).abs().item()
+        next_state_dx = (next_state[2] - next_state[0]).abs().item()
+        reward = (next_state_dx - state_dx) * self.i_reward
+        return reward
+
+
+    def collide_brick(self):
+        collided=pygame.sprite.spritecollide(self.ball,self.bricks,True)
+        if collided:
+            self.score+=10*collided.__len__()
+            if self.ball.rect.center[0]>=collided[0].rect.left and self.ball.rect.center[0]<=collided[0].rect.right:
+                self.ball.dy*=-1
+            else:
+                self.ball.dx*=-1
+  
+    def is_end_game(self):
+        if self.ball.rect.center[1]>HEIGHT-70:
+            return True
+        if self.bricks.__len__()==0:
+            return True
+        return False
+    
+    def reset(self):
+        self.left=False
+        self.right=False
+        self.bricks.empty()
+        self.score=0
+        self.ball.rect.midbottom=(WIDTH/2,HEIGHT/2)
+        self.ball.dx = 0
+        self.ball.dy = 3*1.412
+        self.ball_group.add(self.ball)
+        self.block.rect.midbottom=(WIDTH/2,800)
+        for col in range(cols):
+            for row in range(rows):
+                brick=Brick(scrwidth/cols,200/rows,[x*255 for x in hsv_to_rgb((col+row)/cols,1,1)],row=row,col=col,padding=2)
+                brick.rect.topleft=(70+col*scrwidth/cols,70+row*200/rows)
+                
+                self.bricks.add(brick)
+
+    def reward(self, action):
+        if pygame.sprite.collide_rect(self.ball,self.block):
+            return self.hit_reward
+        if self.ball.rect.center[1]>HEIGHT-70:
+            return self.miss_reward
+        # if self.ball.rect.centerx>self.block.rect.topleft[0] and self.ball.rect.centerx<self.block.rect.topright[0]:
+        #     return self.above_reward
+        # x_distace = abs(self.ball.rect.centerx - self.block.rect.centerx)
+        # return -x_distace/WIDTH
+        return 0
+
+    def draw(self):
+        screen.blit(background,(0,0))
+        self.ball.draw(screen)        
+        self.bricks.draw(screen)
+        self.block.draw(screen)
+        text=font.render(f"Score:{self.score}",True,blue)
+        screen.blit(text,(90,scrheight))
+
+        
+        
+
+

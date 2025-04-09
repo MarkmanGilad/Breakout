@@ -1,0 +1,9 @@
+epoch: 0 loss: 0.0094959 LR: [0.01] step: 451 score: 10 best_score: 10
+epoch: 1 loss: 0.0201690 LR: [0.01] step: 105 score: 0 best_score: 10
+epoch: 2 loss: 0.0480476 LR: [0.01] step: 357 score: 10 best_score: 10
+epoch: 3 loss: 0.0548411 LR: [0.01] step: 357 score: 10 best_score: 10
+epoch: 4 loss: 0.0303293 LR: [0.01] step: 357 score: 10 best_score: 10
+epoch: 5 loss: 0.0245902 LR: [0.01] step: 357 score: 10 best_score: 10
+epoch: 6 loss: 0.0413729 LR: [0.01] step: 357 score: 10 best_score: 10
+epoch: 7 loss: 1.4855520 LR: [0.01] step: 451 score: 10 best_score: 10
+40

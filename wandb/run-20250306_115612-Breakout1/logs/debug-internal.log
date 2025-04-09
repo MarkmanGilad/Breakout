@@ -1,0 +1,16 @@
+{"time":"2025-03-06T11:56:12.4715798+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"C:\\Users\\Talmid\\Downloads\\Breakout\\Breakout (1)\\Breakout\\wandb\\run-20250306_115612-Breakout1\\logs\\debug-core.log"}
+{"time":"2025-03-06T11:56:12.5879888+02:00","level":"INFO","msg":"created new stream","id":"Breakout1"}
+{"time":"2025-03-06T11:56:12.5880479+02:00","level":"INFO","msg":"stream: started","id":"Breakout1"}
+{"time":"2025-03-06T11:56:12.5880479+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:56:12.5880479+02:00","level":"INFO","msg":"sender: started","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:56:12.5880479+02:00","level":"INFO","msg":"handler: started","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:56:13.8453726+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-06T11:56:17.6159858+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-06T11:56:17.6175358+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-06T11:56:18.4679735+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-06T11:56:18.6183028+02:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading history steps 121876-122330, summary, console lines 0-0","runtime_seconds":0.1503293}],"total_operations":1}}
+{"time":"2025-03-06T11:56:19.0077878+02:00","level":"INFO","msg":"stream: closing","id":"Breakout1"}
+{"time":"2025-03-06T11:56:19.0083898+02:00","level":"INFO","msg":"handler: closed","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:56:19.0083898+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:56:19.0088996+02:00","level":"INFO","msg":"sender: closed","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:56:19.00943+02:00","level":"INFO","msg":"stream: closed","id":"Breakout1"}

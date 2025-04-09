@@ -1,0 +1,9 @@
+{"time":"2025-04-09T17:33:58.6161572+03:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2025-04-09T17:33:58.6161572+03:00","level":"INFO","msg":"created symlink","path":"C:\\Users\\Gilad\\Markman Dropbox\\Gilad Markman\\Python\\Breakout\\wandb\\run-20250409_173358-Breakout1\\logs\\debug-core.log"}
+{"time":"2025-04-09T17:33:58.737146+03:00","level":"INFO","msg":"created new stream","id":"Breakout1"}
+{"time":"2025-04-09T17:33:58.737146+03:00","level":"INFO","msg":"stream: started","id":"Breakout1"}
+{"time":"2025-04-09T17:33:58.737146+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"Breakout1"}
+{"time":"2025-04-09T17:33:58.737146+03:00","level":"INFO","msg":"sender: started","stream_id":"Breakout1"}
+{"time":"2025-04-09T17:33:58.737146+03:00","level":"INFO","msg":"handler: started","stream_id":"Breakout1"}
+{"time":"2025-04-09T17:33:59.201308+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-09T17:34:09.2105729+03:00","level":"ERROR","msg":"monitor: disk: error sampling metrics: Incorrect function."}

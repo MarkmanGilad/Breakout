@@ -1,0 +1,14 @@
+epoch: 0 loss: 1.4806917 LR: [0.01] step: 357 score: 10 best_score: 10
+epoch: 1 loss: 0.0113096 LR: [0.01] step: 357 score: 10 best_score: 10
+epoch: 2 loss: 1.4193763 LR: [0.01] step: 357 score: 10 best_score: 10
+epoch: 3 loss: 1.5321645 LR: [0.01] step: 105 score: 0 best_score: 10
+348
+Traceback (most recent call last):
+  File "c:\Users\Talmid\Downloads\Breakout\Breakout (1)\Breakout\DQN_trainer.py", line 145, in <module>
+    main ()
+  File "c:\Users\Talmid\Downloads\Breakout\Breakout (1)\Breakout\DQN_trainer.py", line 77, in main
+    print (step, end='\r')
+  File "C:\Users\Talmid\AppData\Local\Programs\Python\Python311\Lib\site-packages\wandb\sdk\lib\console_capture.py", line 147, in write_with_callbacks
+    n = orig_write(s)
+        ^^^^^^^^^^^^^
+KeyboardInterrupt

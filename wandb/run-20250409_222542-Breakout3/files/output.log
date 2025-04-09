@@ -1,0 +1,28 @@
+epoch: 0 loss: -1.0000000 LR: [0.01] step: 105 score: 0 best_score: 0
+epoch: 1 loss: -1.0000000 LR: [0.01] step: 357 score: 10 best_score: 10
+110
+Traceback (most recent call last):
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Breakout\DQN_trainer.py", line 170, in <module>
+    main (chkpt)
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Breakout\DQN_trainer.py", line 93, in main
+    action = player.GetAction(state=state, epoch=epoch)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Breakout\DQN_simple_Agent.py", line 32, in GetAction
+    Q_values = self.DQN(state)
+               ^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Breakout\DQN_simple.py", line 46, in __call__
+    return self.forward(states).to(self.device)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Gilad\Markman Dropbox\Gilad Markman\Python\Breakout\DQN_simple.py", line 25, in forward
+    x = self.linear1(x)
+        ^^^^^^^^^^^^^^^
+  File "C:\Users\Gilad\.virtualenvs\Space_Invaders-WdsSLu6i\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gilad\.virtualenvs\Space_Invaders-WdsSLu6i\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Gilad\.virtualenvs\Space_Invaders-WdsSLu6i\Lib\site-packages\torch\nn\modules\linear.py", line 125, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (1x6 and 5x32)

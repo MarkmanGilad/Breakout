@@ -1,0 +1,16 @@
+{"time":"2025-03-06T11:59:39.5558134+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"C:\\Users\\Talmid\\Downloads\\Breakout\\Breakout (1)\\Breakout\\wandb\\run-20250306_115939-Breakout1\\logs\\debug-core.log"}
+{"time":"2025-03-06T11:59:39.6694619+02:00","level":"INFO","msg":"created new stream","id":"Breakout1"}
+{"time":"2025-03-06T11:59:39.6695551+02:00","level":"INFO","msg":"stream: started","id":"Breakout1"}
+{"time":"2025-03-06T11:59:39.6695551+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:59:39.6695551+02:00","level":"INFO","msg":"handler: started","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:59:39.6695551+02:00","level":"INFO","msg":"sender: started","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:59:40.0280316+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-06T11:59:40.8919198+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-06T11:59:40.8919198+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-06T11:59:41.8952353+02:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading output.log","runtime_seconds":0.3394263,"progress":"72B/72B"},{"desc":"uploading wandb-summary.json","runtime_seconds":0.3394263,"progress":"202B/202B"},{"desc":"uploading config.yaml","runtime_seconds":0.1283488,"progress":"596B/596B"}],"total_operations":3}}
+{"time":"2025-03-06T11:59:42.1244854+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-06T11:59:43.7602324+02:00","level":"INFO","msg":"stream: closing","id":"Breakout1"}
+{"time":"2025-03-06T11:59:43.7602324+02:00","level":"INFO","msg":"handler: closed","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:59:43.7602324+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:59:43.7619068+02:00","level":"INFO","msg":"sender: closed","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:59:43.7619068+02:00","level":"INFO","msg":"stream: closed","id":"Breakout1"}

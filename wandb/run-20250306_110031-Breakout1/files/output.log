@@ -1,0 +1,16 @@
+epoch: 0 loss: 0.0166527 LR: [0.01] step: 105 score: 0 best_score: 0
+Traceback (most recent call last):
+  File "c:\Users\Talmid\Downloads\Breakout\Breakout (1)\Breakout\DQN_trainer.py", line 148, in <module>
+    main ()
+  File "c:\Users\Talmid\Downloads\Breakout\Breakout (1)\Breakout\DQN_trainer.py", line 130, in main
+    wandb.log(loss,step,env.score,best_score,avg)
+  File "C:\Users\Talmid\AppData\Local\Programs\Python\Python311\Lib\site-packages\wandb\sdk\wandb_run.py", line 449, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Talmid\AppData\Local\Programs\Python\Python311\Lib\site-packages\wandb\sdk\wandb_run.py", line 401, in wrapper_fn
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Talmid\AppData\Local\Programs\Python\Python311\Lib\site-packages\wandb\sdk\wandb_run.py", line 391, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Run.log() takes from 2 to 5 positional arguments but 6 were given

@@ -1,0 +1,16 @@
+{"time":"2025-04-09T22:25:02.0664561+03:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2025-04-09T22:25:02.0664561+03:00","level":"INFO","msg":"created symlink","path":"C:\\Users\\Gilad\\Markman Dropbox\\Gilad Markman\\Python\\Breakout\\wandb\\run-20250409_222502-Breakout2\\logs\\debug-core.log"}
+{"time":"2025-04-09T22:25:02.1784114+03:00","level":"INFO","msg":"created new stream","id":"Breakout2"}
+{"time":"2025-04-09T22:25:02.1784114+03:00","level":"INFO","msg":"stream: started","id":"Breakout2"}
+{"time":"2025-04-09T22:25:02.1784114+03:00","level":"INFO","msg":"sender: started","stream_id":"Breakout2"}
+{"time":"2025-04-09T22:25:02.1784114+03:00","level":"INFO","msg":"handler: started","stream_id":"Breakout2"}
+{"time":"2025-04-09T22:25:02.1791038+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"Breakout2"}
+{"time":"2025-04-09T22:25:02.6795963+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-09T22:25:04.4658121+03:00","level":"INFO","msg":"stream: closing","id":"Breakout2"}
+{"time":"2025-04-09T22:25:04.4658121+03:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-09T22:25:04.4663405+03:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-09T22:25:05.6655214+03:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-09T22:25:06.0362535+03:00","level":"INFO","msg":"handler: closed","stream_id":"Breakout2"}
+{"time":"2025-04-09T22:25:06.0362535+03:00","level":"INFO","msg":"writer: Close: closed","stream_id":"Breakout2"}
+{"time":"2025-04-09T22:25:06.0362535+03:00","level":"INFO","msg":"sender: closed","stream_id":"Breakout2"}
+{"time":"2025-04-09T22:25:06.0372608+03:00","level":"INFO","msg":"stream: closed","id":"Breakout2"}

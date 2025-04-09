@@ -1,0 +1,8 @@
+{"time":"2025-04-09T22:27:18.3007216+03:00","level":"INFO","msg":"using version","core version":"0.19.1"}
+{"time":"2025-04-09T22:27:18.3012432+03:00","level":"INFO","msg":"created symlink","path":"C:\\Users\\Gilad\\Markman Dropbox\\Gilad Markman\\Python\\Breakout\\wandb\\run-20250409_222718-Breakout4\\logs\\debug-core.log"}
+{"time":"2025-04-09T22:27:18.4118912+03:00","level":"INFO","msg":"created new stream","id":"Breakout4"}
+{"time":"2025-04-09T22:27:18.4118912+03:00","level":"INFO","msg":"stream: started","id":"Breakout4"}
+{"time":"2025-04-09T22:27:18.4118912+03:00","level":"INFO","msg":"writer: Do: started","stream_id":"Breakout4"}
+{"time":"2025-04-09T22:27:18.4118912+03:00","level":"INFO","msg":"sender: started","stream_id":"Breakout4"}
+{"time":"2025-04-09T22:27:18.4118912+03:00","level":"INFO","msg":"handler: started","stream_id":"Breakout4"}
+{"time":"2025-04-09T22:27:18.8454938+03:00","level":"INFO","msg":"Starting system monitor"}

@@ -1,0 +1,16 @@
+{"time":"2025-03-06T11:12:29.4425661+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.8","symlink path":"C:\\Users\\Talmid\\Downloads\\Breakout\\Breakout (1)\\Breakout\\wandb\\run-20250306_111229-Breakout1\\logs\\debug-core.log"}
+{"time":"2025-03-06T11:12:29.5635308+02:00","level":"INFO","msg":"created new stream","id":"Breakout1"}
+{"time":"2025-03-06T11:12:29.5635308+02:00","level":"INFO","msg":"stream: started","id":"Breakout1"}
+{"time":"2025-03-06T11:12:29.5635308+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:12:29.5635308+02:00","level":"INFO","msg":"handler: started","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:12:29.5635308+02:00","level":"INFO","msg":"sender: started","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:12:29.9708367+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-06T11:12:33.6767589+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-06T11:12:33.6772656+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-06T11:12:34.6799696+02:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading wandb-summary.json","runtime_seconds":0.7021215,"progress":"195B/195B"},{"desc":"uploading config.yaml","runtime_seconds":0.4310504,"progress":"596B/596B"}],"total_operations":2}}
+{"time":"2025-03-06T11:12:34.9910592+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-06T11:12:35.4164184+02:00","level":"INFO","msg":"stream: closing","id":"Breakout1"}
+{"time":"2025-03-06T11:12:35.4171505+02:00","level":"INFO","msg":"handler: closed","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:12:35.4171505+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:12:35.4171505+02:00","level":"INFO","msg":"sender: closed","stream_id":"Breakout1"}
+{"time":"2025-03-06T11:12:35.4176593+02:00","level":"INFO","msg":"stream: closed","id":"Breakout1"}
