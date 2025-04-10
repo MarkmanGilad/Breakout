@@ -22,7 +22,7 @@ def main (chkpt):
     player_hat.DQN = player.DQN.copy()
     batch_size = 64
     buffer = ReplayBuffer(path=None)
-    learning_rate = 0.01
+    learning_rate = 0.001
     ephocs = 200000
     start_epoch = 0
     C = 5
@@ -93,7 +93,7 @@ def main (chkpt):
             action = player.GetAction(state=state, epoch=epoch)
             reward, done = env.move(action=action)
             next_state = env.simple_state()
-            reward += env.immidiate_reward(state, next_state)
+            reward += env.immidiate_reward(state, next_state, action)
             buffer.push(state, torch.tensor(action, dtype=torch.int32), torch.tensor(reward, dtype=torch.float32), 
                         next_state, torch.tensor(done, dtype=torch.float32))
             if done:

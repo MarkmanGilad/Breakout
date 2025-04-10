@@ -7,7 +7,7 @@ from Constants import*
 from Block import*
 from Ball import*
 from Brick import*
-from random import*
+import random 
 
 
 class Environment:
@@ -19,7 +19,7 @@ class Environment:
         self.block=Block(block_img)
         self.ball=Ball(ball_img,0,3*1.412)
         self.ball_group=pygame.sprite.GroupSingle()
-        self.i_reward = 100
+        self.i_reward = 0.1
         self.hit_reward = 1
         self.miss_reward = -1
         self.above_reward = 0.2
@@ -63,19 +63,38 @@ class Environment:
         player_y = self.block.rect.midtop[1] / scrheight
         ball_x = self.ball.rect.center[0] / scrwidth
         ball_y = self.ball.rect.center[1] / scrheight
-        ball_dx, ball_dy = self.ball.dx / 5, self.ball.dy / 5
+        ball_dx, ball_dy = self.ball.dx / scrwidth, self.ball.dy / scrheight
         state = torch.tensor([ball_x-player_x,player_y-ball_y, ball_dx, ball_dy], dtype=torch.float32)
         return state
 
-    def immidiate_reward (self, state, next_state):
+    def immidiate_reward (self, state, next_state, action):
         state_dx = state[0].item()
-        next_state_dx = next_state[0].item()
-        delta = abs(state_dx) - abs(next_state_dx)
-        if abs(delta) < 0.005:
-            delta = 0
-        reward = delta  * self.i_reward
-        return reward
-
+        ball_dx = state[2].item()
+        dist_x = state_dx + ball_dx
+        trashhold = 50 / scrwidth    # half the block
+        
+        if action == -1:
+            if abs(dist_x) < trashhold: # stay
+                return -self.i_reward        
+            elif dist_x < 0:            # right
+                return self.i_reward
+            else:                       # left
+                return -self.i_reward
+        elif action == 1:
+            if abs(dist_x) < trashhold: # stay
+                return -self.i_reward        
+            elif dist_x < 0:            # right
+                return -self.i_reward
+            else:                       # left
+                return self.i_reward
+        
+        else: # action == 0
+            if abs(dist_x) < trashhold: # stay
+                return self.i_reward        
+            elif dist_x < 0:            # right
+                return -self.i_reward
+            else:                       # left
+                return -self.i_reward
 
     def collide_brick(self):
         collided=pygame.sprite.spritecollide(self.ball,self.bricks,True)
@@ -99,11 +118,10 @@ class Environment:
         self.bricks.empty()
         self.score=0
         self.Block_hit = 0
-        self.ball.rect.midbottom=(WIDTH/2,HEIGHT/2)
-        self.ball.dx = 0
-        self.ball.dy = 3*1.412
-        self.ball_group.add(self.ball)
-        self.block.rect.midbottom=(WIDTH/2,800)
+        # base_x = random.randint(500, WIDTH-500)
+        base_x = WIDTH / 2
+        self.ball.random_init(base_x)
+        self.block.rect.midbottom=(base_x, 800)
         for col in range(cols):
             for row in range(rows):
                 brick=Brick(scrwidth/cols,200/rows,[x*255 for x in hsv_to_rgb((col+row)/cols,1,1)],row=row,col=col,padding=2)
@@ -130,7 +148,7 @@ class Environment:
         text=font.render(f"Score:{self.score}",True,blue)
         screen.blit(text,(90,scrheight))
 
-        
+    
         
 
 

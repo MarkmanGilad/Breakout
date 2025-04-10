@@ -17,4 +17,4 @@ colors=[blue,red,green,yellow,purple]
 rows=5
 cols=13
 
-epsilon_start, epsilon_final, epsiln_decay = 1, 0.01, 200
+epsilon_start, epsilon_final, epsiln_decay = 1, 0.01, 500
