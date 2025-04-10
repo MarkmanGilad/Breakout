@@ -61,8 +61,8 @@ class Environment:
     def simple_state(self):
         player_x = self.block.rect.midtop[0] / scrwidth
         player_y = self.block.rect.midtop[1] / scrheight
-        ball_x = self.ball.rect.center[0] / scrwidth
-        ball_y = self.ball.rect.center[1] / scrheight
+        ball_x = self.ball.x / scrwidth
+        ball_y = self.ball.y / scrheight
         ball_dx, ball_dy = self.ball.dx / scrwidth, self.ball.dy / scrheight
         state = torch.tensor([ball_x-player_x,player_y-ball_y, ball_dx, ball_dy], dtype=torch.float32)
         return state

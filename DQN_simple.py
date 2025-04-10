@@ -7,7 +7,8 @@ from Constants import *
 # Parameters
 input_size = 4
 layer1 = 32
-layer2 = 16
+layer2 = 64
+layer3 = 32
 output_size = 3 # Q(state)-> 3 value of stay, left, right
 gamma = 0.99
  
@@ -18,13 +19,16 @@ class DQN (nn.Module):
         self.device = device
         self.linear1 = nn.Linear(input_size, layer1)
         self.linear2 = nn.Linear(layer1, layer2)
-        self.output = nn.Linear(layer2, output_size)
+        self.linear3 = nn.Linear(layer2, layer3)
+        self.output = nn.Linear(layer3, output_size)
         self.Loss = nn.MSELoss()
 
     def forward (self, x):
         x = self.linear1(x)
         x = F.leaky_relu(x)
         x = self.linear2(x)
+        x = F.leaky_relu(x)
+        x = self.linear3(x)
         x = F.leaky_relu(x)
         x = self.output(x)
         return x
