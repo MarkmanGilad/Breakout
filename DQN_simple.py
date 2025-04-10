@@ -5,9 +5,9 @@ import copy
 from Constants import *
 
 # Parameters
-input_size = 6
-layer1 = 32
-layer2 = 64
+input_size = 4
+layer1 = 16
+layer2 = 16
 output_size = 3 # Q(state)-> 3 value of stay, left, right
 gamma = 0.99
  

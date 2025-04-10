@@ -70,5 +70,5 @@ class DQN_Agent:
                 dqn_hat_param.data.copy_(tau * dqn_param.data + (1.0 - tau) * dqn_hat_param.data)
 
 
-    def __call__(self, events= None, state=None):
-        return self.get_Action(state)
+    # def __call__(self, events= None, state=None):
+    #     return self.GetAction(state)

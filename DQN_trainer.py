@@ -72,7 +72,7 @@ def main (chkpt):
         env.reset()
         end_of_game = False
         state = env.simple_state()
-
+        step = 0
         while not end_of_game:
 
             if(render==1):
@@ -94,7 +94,6 @@ def main (chkpt):
             reward, done = env.move(action=action)
             next_state = env.simple_state()
             reward += env.immidiate_reward(state, next_state)
-            # wandb.log({"reward": reward})
             buffer.push(state, torch.tensor(action, dtype=torch.int32), torch.tensor(reward, dtype=torch.float32), 
                         next_state, torch.tensor(done, dtype=torch.float32))
             if done:
@@ -121,13 +120,10 @@ def main (chkpt):
             player_hat.DQN.load_state_dict(player.DQN.state_dict())
 
         #region #####   loging and printing ###################################
-        # if epoch % 10 != 0:
-
-        
+       
         print (f'chkpt: {chk} epoch: {epoch} loss: {loss:.7f} LR: {scheduler.get_last_lr()} step: {step} ' \
                f'score: {env.score} best_score: {best_score}')
-        wandb.log({"step": step})
-        step = 0
+        
         if epoch % 10 == 0:
             scores.append(env.score)
             losses.append(loss.item())
@@ -137,11 +133,14 @@ def main (chkpt):
             avg_score.append(avg)
             print (f'average score last 10 games: {avg} ')
             avg = 0
-
-        wandb.log({"loss": loss})
-        wandb.log({"score": env.score})
-        wandb.log({"best score": best_score})
-        wandb.log({"average score": avg})
+        wandb.log({"step": step, 
+                   "loss": loss, 
+                   "score": env.score, 
+                   "best score": best_score, 
+                   "average score": avg,
+                   "hits": env.Block_hit
+                   })
+                
 
         if epoch % 1000 == 0 and epoch > 0:
             checkpoint = {
@@ -161,11 +160,11 @@ def main (chkpt):
 
 
 if __name__ == "__main__":
-    if not os.path.exists("Data/checkpoit_num"):
-        torch.save(1, "Data/checkpoit_num")    
+    if not os.path.exists("Data/checkpoint_num"):
+        torch.save(20, "Data/checkpoint_num")    
     
-    chkpt = torch.load("Data/checkpoit_num")
+    chkpt = torch.load("Data/checkpoint_num")
     chkpt += 1
-    torch.save(chkpt, "Data/checkpoit_num")    
+    torch.save(chkpt, "Data/checkpoint_num")    
     main (chkpt)
     

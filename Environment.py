@@ -8,6 +8,8 @@ from Block import*
 from Ball import*
 from Brick import*
 from random import*
+
+
 class Environment:
     def __init__(self) -> None:
         self.left=False
@@ -17,32 +19,26 @@ class Environment:
         self.block=Block(block_img)
         self.ball=Ball(ball_img,0,3*1.412)
         self.ball_group=pygame.sprite.GroupSingle()
-        self.i_reward = 0.05
+        self.i_reward = 100
         self.hit_reward = 1
         self.miss_reward = -1
         self.above_reward = 0.2
+
+        self.Block_hit = 0
     
     def move(self,action):
-        dx= hypot(self.ball.dx,self.ball.dy)+3
+        # dx= hypot(self.ball.dx,self.ball.dy)+3
+        dx = 7
         if action==1:
-            self.right=True
-            self.left=False
-        elif action==-1:
-            self.left=True
-            self.right=False
-        elif action==0:
-            self.left=False
-            self.right=False
-        if self.right:
             self.block.move(dx)
-        if self.left:
+        elif action==-1:
             self.block.move(dx*-1)  
-        reward = 0
+                        
         self.collide_brick()
         if self.ball.collide_block(self.block):
-            reward += 1
+            self.Block_hit += 1
         self.ball.move()
-        reward+=self.reward(action)
+        reward = self.reward(action)
         done=self.is_end_game()
         return reward,done
         
@@ -63,16 +59,21 @@ class Environment:
         return state
 
     def simple_state(self):
-        player_x, player_y = self.block.rect.midtop
-        ball_x, ball_y = self.ball.rect.center
-        ball_dx, ball_dy = self.ball.dx, self.ball.dy
-        state = torch.tensor([player_x, player_y, ball_x, ball_y, ball_dx, ball_dy], dtype=torch.float32)
+        player_x = self.block.rect.midtop[0] / scrwidth
+        player_y = self.block.rect.midtop[1] / scrheight
+        ball_x = self.ball.rect.center[0] / scrwidth
+        ball_y = self.ball.rect.center[1] / scrheight
+        ball_dx, ball_dy = self.ball.dx / 5, self.ball.dy / 5
+        state = torch.tensor([ball_x-player_x,player_y-ball_y, ball_dx, ball_dy], dtype=torch.float32)
         return state
 
     def immidiate_reward (self, state, next_state):
-        state_dx = (state[2] - state[0]).abs().item()
-        next_state_dx = (next_state[2] - next_state[0]).abs().item()
-        reward = (next_state_dx - state_dx) * self.i_reward
+        state_dx = state[0].item()
+        next_state_dx = next_state[0].item()
+        delta = abs(state_dx) - abs(next_state_dx)
+        if abs(delta) < 0.005:
+            delta = 0
+        reward = delta  * self.i_reward
         return reward
 
 
@@ -97,6 +98,7 @@ class Environment:
         self.right=False
         self.bricks.empty()
         self.score=0
+        self.Block_hit = 0
         self.ball.rect.midbottom=(WIDTH/2,HEIGHT/2)
         self.ball.dx = 0
         self.ball.dy = 3*1.412

@@ -6,3 +6,4 @@
 {"time":"2025-04-09T22:27:18.4118912+03:00","level":"INFO","msg":"sender: started","stream_id":"Breakout4"}
 {"time":"2025-04-09T22:27:18.4118912+03:00","level":"INFO","msg":"handler: started","stream_id":"Breakout4"}
 {"time":"2025-04-09T22:27:18.8454938+03:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-09T22:27:28.8459574+03:00","level":"ERROR","msg":"monitor: disk: error sampling metrics: Incorrect function."}
