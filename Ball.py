@@ -9,7 +9,7 @@ class Ball(pygame.sprite.Sprite):
         super().__init__()
         self.image=image
         self.rect=self.image.get_rect()
-        self.rnd_x = 20
+        self.rnd_x = 100
         self.rnd_angle = 10 
         self.x = WIDTH / 2
         self.y = HEIGHT*0.33
@@ -67,10 +67,10 @@ class Ball(pygame.sprite.Sprite):
         self.y = HEIGHT * 0.33
         self.x = random.uniform(base_x - self.rnd_x, base_x + self.rnd_x)
         
-        self.rect.midbottom=(round(self.x) ,round(self.y))
+        self.rect.midbottom=(round(self.x)-2 ,round(self.y))
 
-        self.rnd_angle += 0.05
+        self.rnd_angle += 0.1
         self.rnd_angle = min(self.rnd_angle, 50)
 
-        self.rnd_x += 0.1
+        self.rnd_x += 0.2
         self.rnd_x = min(self.rnd_x, WIDTH/2-300)
