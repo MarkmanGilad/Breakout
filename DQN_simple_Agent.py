@@ -12,6 +12,8 @@ class DQN_Agent:
             self.DQN.load_params(parametes_path)
         self.train = train
         self.setTrainMode()
+        self.actions_choosen = {0: {-1: 0, 0: 0, 1: 0}}
+        self.actions_choosen_epsilon = {0: {-1: 0, 0: 0, 1: 0}}
 
     def setTrainMode (self):
           if self.train:
@@ -26,12 +28,19 @@ class DQN_Agent:
             epsilon = self.epsilon_greedy(epoch)
             rnd = random.random()
             if rnd < epsilon:
-                return random.choice(actions)
+                res = random.choice(actions)
+                actions_results_epsilon = self.actions_choosen_epsilon.get(epoch, {-1:0, 0:0, 1:0})
+                actions_results_epsilon[res] += 1
+                self.actions_choosen_epsilon[epoch] = actions_results_epsilon
+                return res
         
         with torch.no_grad():
             Q_values = self.DQN(state)
         max_index = torch.argmax(Q_values)
         res = actions[max_index]
+        actions_results = self.actions_choosen.get(epoch, {-1:0, 0:0, 1:0})
+        actions_results[res] += 1
+        self.actions_choosen[epoch] = actions_results
         return res
 
     def get_Actions_Values (self, states):

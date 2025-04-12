@@ -33,11 +33,12 @@ class Environment:
             self.block.move(dx)
         elif action==-1:
             self.block.move(dx*-1)  
-                        
+        
+        self.ball.move()          
         self.collide_brick()
         if self.ball.collide_block(self.block):
             self.Block_hit += 1
-        self.ball.move()
+        
         reward = self.reward(action)
         done=self.is_end_game()
         return reward,done
@@ -63,36 +64,36 @@ class Environment:
         player_y = self.block.rect.midtop[1] / scrheight
         ball_x = self.ball.x / scrwidth
         ball_y = self.ball.y / scrheight
-        ball_dx, ball_dy = self.ball.dx / scrwidth, self.ball.dy / scrheight
-        state = torch.tensor([ball_x-player_x,player_y-ball_y, ball_dx, ball_dy], dtype=torch.float32)
+        ball_dx, ball_dy = self.ball.dx / 5, self.ball.dy / 5
+        state = torch.tensor([-player_x-ball_x,player_y-ball_y, ball_dx, ball_dy], dtype=torch.float32)
         return state
 
     def immidiate_reward (self, state, next_state, action):
         state_dx = state[0].item()
         # next_state_dx = next_state[0].item()
         ball_dx = state[2].item()
-        dist_x = state_dx + ball_dx
+        # dist_x = state_dx - ball_dx
         trashhold = 50 / scrwidth    # half the block
         
         if action == -1:
-            if abs(dist_x) < trashhold: # stay
+            if abs(state_dx) < trashhold: # stay
                 return -self.i_reward        
-            elif dist_x < 0:            # right
-                return self.i_reward
+            elif state_dx < 0:            # right
+                return +self.i_reward
             else:                       # left
-                return -self.i_reward
+                return self.i_reward
         elif action == 1:
-            if abs(dist_x) < trashhold: # stay
+            if abs(state_dx) < trashhold: # stay
                 return -self.i_reward        
-            elif dist_x < 0:            # right
-                return -self.i_reward
-            else:                       # left
+            elif state_dx < 0:            # right
                 return self.i_reward
+            else:                       # left
+                return -self.i_reward
         
         else: # action == 0
-            if abs(dist_x) < trashhold: # stay
+            if abs(state_dx) < trashhold: # stay
                 return self.i_reward        
-            elif dist_x < 0:            # right
+            elif state_dx < 0:            # right
                 return -self.i_reward
             else:                       # left
                 return -self.i_reward

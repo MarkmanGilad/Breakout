@@ -130,6 +130,7 @@ def main (chkpt):
         if epoch % 10 == 0:
             scores.append(env.score)
             losses.append(loss.item())
+            torch.save(player.actions_choosen, f'Data/actions_choosen{chk}')
 
         avg = (avg * (epoch % 10) + env.score) / (epoch % 10 + 1)
         if (epoch + 1) % 10 == 0:

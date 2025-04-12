@@ -57,9 +57,8 @@ class Ball(pygame.sprite.Sprite):
         surface.blit(self.image,self.rect)
 
     def random_init (self, base_x):
-
         speed = 4.2
-        angle_deg_down = random.uniform(90 - self.rnd_angle, 90)
+        angle_deg_down = random.uniform(90 - self.rnd_angle, 90 + self.rnd_angle)
         # angle_deg_up = random.uniform(270 - self.rnd_angle, 270 + self.rnd_angle)
         # angle_deg = random.choice([angle_deg_down, angle_deg_up])
         angle = radians(angle_deg_down)
@@ -69,7 +68,7 @@ class Ball(pygame.sprite.Sprite):
         self.y = 300 #HEIGHT / 2
         # self.x = random.uniform(base_x - self.rnd_x, base_x + self.rnd_x)
         self.x = WIDTH / 2
-        self.rect.midbottom=(round(self.x) ,round(self.y))
+        self.rect.center=(round(self.x) ,round(self.y))
 
         self.rnd_angle += 0.1
         self.rnd_angle = min(self.rnd_angle, 50)
