@@ -65,8 +65,20 @@ class Environment:
         ball_x = self.ball.x / scrwidth
         ball_y = self.ball.y / scrheight
         ball_dx, ball_dy = self.ball.dx / 5, self.ball.dy / 5
-        state = torch.tensor([-player_x-ball_x,player_y-ball_y, ball_dx, ball_dy], dtype=torch.float32)
+        state = torch.tensor([player_x-ball_x,player_y-ball_y, ball_dx, ball_dy], dtype=torch.float32)
         return state
+
+    def double_simple_state (self):
+        player_x = self.block.rect.midtop[0] / scrwidth
+        player_y = self.block.rect.midtop[1] / scrheight
+        ball_x = self.ball.x / scrwidth
+        ball_y = self.ball.y / scrheight
+        ball_dx, ball_dy = self.ball.dx / 5, self.ball.dy / 5
+        state_left = 1
+        state_right = 1
+        state_padding = torch.zeros(4, dtype=torch.float32)
+        state = torch.tensor([player_x-ball_x,player_y-ball_y, ball_dx, ball_dy], dtype=torch.float32)
+        return state 
 
     def immidiate_reward (self, state, next_state, action):
         state_dx = state[0].item()
