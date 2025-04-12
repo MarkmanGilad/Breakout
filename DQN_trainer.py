@@ -109,7 +109,10 @@ def main (chkpt):
             ############## Train ################
             states, actions, rewards, next_states, dones = buffer.sample(batch_size)
             Q_values = player.Q(states, actions)
-            next_actions, Q_hat_Values = player_hat.get_Actions_Values(next_states)  # DQN
+            # next_actions, Q_hat_Values = player_hat.get_Actions_Values(next_states)  # DQN
+            next_actions, _ = player.get_Actions_Values(next_states)
+            Q_hat_Values = player_hat.Q(next_states,next_actions)                       # DDQN
+            
             loss = player.DQN.loss(Q_values, rewards, Q_hat_Values, dones)
             loss.backward()
             optim.step()

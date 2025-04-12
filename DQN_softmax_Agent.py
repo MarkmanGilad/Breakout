@@ -12,6 +12,9 @@ class DQN_Agent:
             self.DQN.load_params(parametes_path)
         self.train = train
         self.setTrainMode()
+        self.temp = 2.0            # start high
+        self.min_temp = 0.01       # avoid full greed
+        self.temp_decay = 0.995    # decay rate
 
     def setTrainMode (self):
           if self.train:
@@ -22,17 +25,23 @@ class DQN_Agent:
     def GetAction (self, epoch = 0, events= None,env=None,state=None) -> tuple:
         # if state is None: state = env.getState()
         actions = [-1,0,1]
-        if self.train:
-            epsilon = self.epsilon_greedy(epoch)
-            rnd = random.random()
-            if rnd < epsilon:
-                return random.choice(actions)
-        
         with torch.no_grad():
+            # Ensure state has batch dimension
+            # state = state.to(self.device)
             Q_values = self.DQN(state)
-        max_index = torch.argmax(Q_values)
-        res = actions[max_index]
-        return res
+        
+        if self.train:
+            index = self.softmax_action_selection(Q_values, self.temp)
+            self.temp = max(self.min_temp, self.temp * self.temp_decay)
+        else:
+            index = torch.argmax(Q_values).item()
+        return actions[index]
+
+
+    def softmax_action_selection(self, q_values, temp=0.1):
+        q_values = q_values.squeeze(0)
+        probs = torch.softmax(q_values / temp, dim=-1)
+        return torch.multinomial(probs, num_samples=1).item() 
 
     def get_Actions_Values (self, states):
         with torch.no_grad():

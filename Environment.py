@@ -69,6 +69,7 @@ class Environment:
 
     def immidiate_reward (self, state, next_state, action):
         state_dx = state[0].item()
+        # next_state_dx = next_state[0].item()
         ball_dx = state[2].item()
         dist_x = state_dx + ball_dx
         trashhold = 50 / scrwidth    # half the block
